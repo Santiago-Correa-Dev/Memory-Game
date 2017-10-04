@@ -1,0 +1,311 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*
+* Styles for the deck of cards
+*/
+
+.deck {
+    width: 51%;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    transform: rotateY(360deg);
+    transition: .50s ease-in-out;
+    background: #02b3e4;
+    cursor: default;
+    pointer-events: none;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/*
+* Styles for the Score Panel
+*/
+
+.score-panel {
+    text-align: left;
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 40px 0 10px;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+/* Winning */
+
+.modal {
+    width:100%;
+    height:100%;
+    background: rgb(0,0,0) url(../img/husky.png) no-repeat 50% 25%;
+    background-size: cover;
+    position:fixed;
+    top:0;
+    left:0;
+    text-align: center;
+    font-family: 'Cookie', cursive;
+    opacity: 0;
+    color: #fff;
+    pointer-events: none;
+}
+
+.modal-image {
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    top: 35%;
+}
+
+.message {
+    position: absolute;
+    top: 38%;
+    left: 45%;
+    font-size: 200%;
+}
+
+.modal-parragraph {
+    position: absolute;
+    top : 46%;
+    left: 47%;
+    font-size: 150%;
+}
+
+.rock {
+    position: absolute;
+    top: 50%;
+    left: 47%;
+    font-size: 150%;
+
+}
+
+.modal-button {
+    position: absolute;
+    top: 58%;
+    margin-top: 15px;
+    left: 49%;
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 698px) {
+    .message,
+    .modal-parragraph,
+    .modal-button {
+        left: 40%;
+        margin-top: 15px;
+    }
+
+    .timer {
+        margin: 0 32px;
+    }
+
+
+    .message {
+        top: 42%;
+        font-size: 125%;
+    }
+
+    .modal-parragraph {
+        font-size : 110%;
+    }
+
+    .deck {
+        width: 100%;
+    }
+
+    .card {
+        height: 100px;
+        margin-top: 10px;
+    }
+
+    .score-panel .stars {
+        margin: 0;
+    }
+
+    .score-panel .restart {
+        margin-right: 48px;
+    }
+}
+
+@media screen and (max-width: 703px) {
+    .deck {
+        width: 100%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+
+}
+
+@media screen and (max-width: 718px) {
+    .deck {
+        width: 98%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .deck {
+        width: 90%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;6
+    }
+}
+
+@media screen and (max-width: 876px) {
+    .deck {
+        width: 80%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+}
+
+@media screen and (max-width: 898px) {
+    .deck {
+        width: 78%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .deck {
+        width: 67%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+}
+
+
+@media screen and (max-width: 1163px) {
+    .deck {
+        width: 60%;
+    }
+
+    .score-panel .restart {
+        margin-right: -12px;
+    }
+
+    .score-panel .stars {
+        margin: 0 6px 0 10px;
+    }
+}
