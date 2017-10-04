@@ -13,6 +13,8 @@ This game is a Card Matching game , but most people know it as (Concentration)
 
 This isn't just any normal game, but it's well designed and interactive.
 
+All you have to do to play - Is use any browser and that's all.
+
 ## How The Game Works
 
 The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol face down. The gameplay rules are very simple: flip over two hidden cards at a time to locate the ones that match!

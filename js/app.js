@@ -49,6 +49,9 @@ $(function() {
   // Adds class of open show to cards.
   const cardCreator = function(){
     $(this).addClass('open show');
+    if($('.show').length > 2) {
+      $(this).removeClass('open show');
+    }
   };
 
   // Creating a list of cards that have the class of open.
@@ -59,7 +62,7 @@ $(function() {
   // Card matcher
   const match = function(){
     if(cardsOpen.length > 1) {
-      if(cardsOpen[0].id !== cardsOpen[1].id && cardsOpen[0].innerHTML === cardsOpen[1].innerHTML) {
+      if(cardsOpen[0].id !== cardsOpen[1].id && cardsOpen[0].innerHTML === cardsOpen[1].innerHTML && $('.show').length === 2) {
         $('.show').addClass('match'); //
         cardsOpen.splice(0,2); // Waiting on feedback to make this better
       } else {
