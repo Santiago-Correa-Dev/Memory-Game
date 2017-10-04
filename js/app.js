@@ -48,8 +48,6 @@ $(function() {
   // Adds class of open show to cards.
   const cardCreator = function(){
     $(this).addClass('open show');
-    if(cardsOpen.length === 0)
-      $(this).unbind('click');
   };
 
   // Creating a list of cards that have the class of open.
@@ -60,100 +58,73 @@ $(function() {
   // Card matcher
   const match = function(){
     if(cardsOpen.length > 1) {
-      <<<<<<< HEAD
       if(cardsOpen[0].id !== cardsOpen[1].id && cardsOpen[0].innerHTML === cardsOpen[1].innerHTML) {
         $('.show').addClass('match'); //
         cardsOpen.splice(0,2); // Waiting on feedback to make this better
       } else {
-        =======
-          if(cardsOpen[0].id !== cardsOpen[1].id && cardsOpen[0].innerHTML === cardsOpen[1].innerHTML){
-            $('.show').addClass('match');
-            cardsOpen.splice(0,2)
-          }
-        else {
-          $('cardsOpen[0]').bind('click');
-          >>>>>>> 24270c9c80508c1673b3a8288902643ff7829c48
-          cardsOpen.splice(0,2)
-          setTimeout( function(){
-            cards.removeClass('open show');
-          }  , 900 )
-        };
+        cardsOpen.splice(0,2)
+        setTimeout( function(){
+          cards.removeClass('open show');
+        }  , 900 )
       };
     };
+  };
 
-    // Counts moves and removes stars
+  // Counts moves and removes stars
 
-    const movecounter = function(){
-
-      <<<<<<< HEAD
-      if($('.show').click && $('.show').length >= 2) {
-        =======
-          if($('.show').click) {
-            >>>>>>> 24270c9c80508c1673b3a8288902643ff7829c48
-            moves++;
-            numOfmoves.text(moves);
-            numOfmoves2.text(moves);
-          };
-
-        if(numOfmoves.text() >= 12 && index1numOfmoves) {
-          index1numOfmoves.remove();
-        }
-        else if(numOfmoves.text() >= 6 && index2numOfmoves ) {
-          index2numOfmoves.remove();
-        };
-      };
+  const movecounter = function(){
+    if($('.show').click && $('.show').length >= 2) {
+      moves++;
+      numOfmoves.text(moves);
+      numOfmoves2.text(moves);
+    }
+    else if(numOfmoves.text() >= 12 && index1numOfmoves) {
+      index1numOfmoves.remove();
+    }
+    else if(numOfmoves.text() >= 6 && index2numOfmoves ) {
+      index2numOfmoves.remove();
+    };
+  };
 
 
-      // Timer
+  // Timer
 
-      function add() {
-        seconds++;
-        if (seconds >= 60) {
-          seconds = 0;
-          minutes++;
-          if (minutes >= 60) {
-            minutes = 0;
-            hours++;
-          }
-        }
+  function add() {
+    seconds++;
+    if (seconds >= 60) {
+      seconds = 0;
+      minutes++;
+      if (minutes >= 60) {
+        minutes = 0;
+        hours++;
+      }
+    }
 
-        stopwatch.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    stopwatch.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
-        timer();
-      };
+    timer();
+  };
 
-      function timer() {
-        t = setTimeout(add, 1000);
-      };
+  function timer() {
+    t = setTimeout(add, 1000);
+  };
 
-      $(this).one("click", function () {
-        timer();
-      });
+  $(this).one("click", function () {
+    timer();
+  });
 
-      // Winning and Restarting Game.
+  // Winning and Restarting Game.
 
-      const winning = function(){
+  const winning = function(){
 
-        if($('.match').length >= 16){
-          $('.modal').css({'opacity': '1','pointer-events': 'all'});
-          numOfStars.text(stars.children().length);
-          $('.time').text(stopwatch.innerText);
-          console.log('AWESOME');
+    if($('.match').length >= 16){
+      $('.modal').css({'opacity': '1','pointer-events': 'all'});
+      numOfStars.text(stars.children().length);
+      $('.time').text(stopwatch.innerText);
+      console.log('AWESOME');
 
-          $('.modal-button').click(function(){ // Would like some feedback on the next two lines of code. Too much repetition here.
-            $('.modal').hide();
-            stars.append(numOfMovesArray);
-            moves = 0;
-            numOfmoves.text(moves);
-            cards.removeClass('open show match');
-            stopwatch.textContent = "00:00:00";
-            seconds = 0; minutes = 0; hours = 0;
-            $('.deck').append(shuffle(list));
-          });
-        };
-      };
-
-      $('.restart').click(function(){
+      $('.modal-button').click(function(){ // Would like some feedback on the next two lines of code. Too much repetition here.
+        $('.modal').hide();
         stars.append(numOfMovesArray);
         moves = 0;
         numOfmoves.text(moves);
@@ -162,13 +133,25 @@ $(function() {
         seconds = 0; minutes = 0; hours = 0;
         $('.deck').append(shuffle(list));
       });
+    };
+  };
 
-      const Symbol = cards.click(function(){
-        cardCreator.call(this); // The class open show is added to all of the cards that are clicked on.
-        listOpen(this); //The cards object is then passed on to listOpen with the class open show.
-        match.call(this); //Function checks if cards match, if they don't , hide the unmatching cards.
-        movecounter(); // Function adds a number by every 2 clicks the user does. Also removes stars because of moves.
-        winning(); // Shows a Modal after all cards have been matched.
-      });
-    });
+  $('.restart').click(function(){
+    stars.append(numOfMovesArray);
+    moves = 0;
+    numOfmoves.text(moves);
+    cards.removeClass('open show match');
+    stopwatch.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+    $('.deck').append(shuffle(list));
+  });
+
+  const Symbol = cards.click(function(){
+    cardCreator.call(this); // The class open show is added to all of the cards that are clicked on.
+    listOpen(this); //The cards object is then passed on to listOpen with the class open show.
+    match.call(this); //Function checks if cards match, if they don't , hide the unmatching cards.
+    movecounter(); // Function adds a number by every 2 clicks the user does. Also removes stars because of moves.
+    winning(); // Shows a Modal after all cards have been matched.
+  });
+});
 
