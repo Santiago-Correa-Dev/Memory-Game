@@ -1,6 +1,7 @@
 let moves = 0;
 let count = 0;
 let cards = $('.card');
+let gameStart = false;
 let stopwatch = document.getElementsByClassName('timer')[0],
     seconds = 0, minutes = 0, hours = 0, t;
 const numOfStars = $('.starsNumber');
@@ -109,12 +110,17 @@ $(function() {
     t = setTimeout(add, 1000);
   };
 
-  $(this).one("click", function () {
-    timer();
-  });
+  $(this).one("click", function() { 
+    if(!gameStart) {
+      gameStart = true; 
+      timer();
+  }
+});
+
+
 
   // Winning and Restarting Game.
-
+ 
   const winning = function(){
 
     if($('.match').length >= 16){
@@ -143,6 +149,7 @@ $(function() {
     cards.removeClass('open show match');
     stopwatch.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
+    gameStart = true;
     $('.deck').append(shuffle(list));
   });
 
