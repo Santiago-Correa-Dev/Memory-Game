@@ -91,7 +91,7 @@ $(function() {
   // Timer
 
   function add() {
-    if(gameStart) {
+    if(gameStart) { //The logic of timer will only run if gameStart is true.
     seconds++;
     if (seconds >= 60) {
       seconds = 0;
@@ -113,7 +113,7 @@ $(function() {
   };
 
   $('.card').one("click", function() {
-    if(!gameStart) {
+    if(!gameStart) { //Here we check if gameStart is false and we then say hey since this is false I'm going to make it true.
       gameStart = true;
       timer();
   }
@@ -124,16 +124,18 @@ $(function() {
   const winning = function(){
 
     if($('.match').length >= 16){
+      $('.modal').show();
       $('.modal').css({'opacity': '1','pointer-events': 'all'});
       numOfStars.text(stars.children().length);
       $('.time').text(stopwatch.innerText);
-      console.log('AWESOME');
 
       $('.modal-button').click(function(){ // Would like some feedback on the next two lines of code. Too much repetition here.
         $('.modal').hide();
         stars.append(numOfMovesArray);
         moves = 0;
+        match.length = 0;
         numOfmoves.text(moves);
+        gameStart = false;
         cards.removeClass('open show match');
         stopwatch.textContent = "00:00:00";
         seconds = 0; minutes = 0; hours = 0;
