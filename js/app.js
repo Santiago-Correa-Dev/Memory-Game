@@ -61,6 +61,7 @@ $(function() {
     if(cardsOpen.length > 1) {
       if(cardsOpen[0].id !== cardsOpen[1].id && cardsOpen[0].innerHTML === cardsOpen[1].innerHTML && $('.show').length === 2) {
         $('.show').addClass('match'); //
+        $('.match').removeClass('open show')
         cardsOpen.splice(0,2); // Waiting on feedback to make this better
       } else {
         cardsOpen.splice(0,2)
@@ -74,7 +75,7 @@ $(function() {
   // Counts moves and removes stars
 
   const movecounter = function(){
-    if($('.show').click && $('.show').length >= 2) {
+    if($('.show').click && $('.show').length === 2) {
       moves++;
       numOfmoves.text(moves);
       numOfmoves2.text(moves);
@@ -135,10 +136,10 @@ $(function() {
         moves = 0;
         match.length = 0;
         numOfmoves.text(moves);
-        gameStart = false;
         cards.removeClass('open show match');
         stopwatch.textContent = "00:00:00";
         seconds = 0; minutes = 0; hours = 0;
+        gameStart = false;
         $('.deck').append(shuffle(list));
       });
     };
