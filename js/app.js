@@ -49,6 +49,9 @@ $(function() {
   // Adds class of open show to cards.
   const cardCreator = function(){
     $(this).addClass('open show');
+      if($('.show').length > 2) {
+      $(this).removeClass('open show');
+    }
   };
 
   // Creating a list of cards that have the class of open.
