@@ -75,7 +75,7 @@ $(function() {
   // Counts moves and removes stars
 
   const movecounter = function(){
-    if($('.show').click && $('.show').length === 2) {
+    if($('.show').click && $('.show').length != 1) {
       moves++;
       numOfmoves.text(moves);
       numOfmoves2.text(moves);
@@ -85,7 +85,7 @@ $(function() {
     }
     else if(numOfmoves.text() >= 6 && index2numOfmoves ) {
       index2numOfmoves.remove();
-    };
+    }
   };
 
 
@@ -123,8 +123,8 @@ $(function() {
   // Winning and Restarting Game.
 
   const winning = function(){
-
     if($('.match').length >= 16){
+      gameStart = false;
       $('.modal').show();
       $('.modal').css({'opacity': '1','pointer-events': 'all'});
       numOfStars.text(stars.children().length);
@@ -136,10 +136,15 @@ $(function() {
         moves = 0;
         match.length = 0;
         numOfmoves.text(moves);
+        $('.card').one("click", function() {
+          if(!gameStart) { //Here we check if gameStart is false and we then say hey since this is false I'm going to make it true.
+            gameStart = true;
+            timer();
+        }
+      });
         cards.removeClass('open show match');
         stopwatch.textContent = "00:00:00";
         seconds = 0; minutes = 0; hours = 0;
-        gameStart = false;
         $('.deck').append(shuffle(list));
       });
     };
@@ -153,6 +158,12 @@ $(function() {
     stopwatch.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
     gameStart = false;
+    $('.card').one("click", function() {
+      if(!gameStart) { //Here we check if gameStart is false and we then say hey since this is false I'm going to make it true.
+        gameStart = true;
+        timer();
+    }
+  });
     $('.deck').append(shuffle(list));
   });
 
