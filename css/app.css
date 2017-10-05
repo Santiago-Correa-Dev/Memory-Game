@@ -82,6 +82,9 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    transform: rotateY(0);
+    transform: rotateY(360deg);
+    transition: .50s ease-in-out;
 }
 
 /*
