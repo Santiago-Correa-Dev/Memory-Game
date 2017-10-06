@@ -85,6 +85,7 @@ h1 {
     transform: rotateY(0);
     transform: rotateY(360deg);
     transition: .50s ease-in-out;
+    pointer-events: none;
 }
 
 /*
